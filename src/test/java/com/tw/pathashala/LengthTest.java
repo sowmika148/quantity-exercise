@@ -48,4 +48,14 @@ class LengthTest {
 
         assertThat(oneKm, is(equalTo(oneLakhCm)));
     }
+
+    @Test
+    void should_Return_2_m_When_100_cm_and_1_m_IsAdded() {
+        Length hundredCentimeter = new Length(100, Unit.CM);
+        Length oneMeter = new Length(1, Unit.M);
+        Length result = hundredCentimeter.add(oneMeter);
+
+        assertThat(2.0, is(equalTo(result.getMagnitude())));
+        assertThat(Unit.CM, is(equalTo(result.getUnit())));
+    }
 }
