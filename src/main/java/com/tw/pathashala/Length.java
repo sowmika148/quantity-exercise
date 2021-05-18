@@ -29,6 +29,11 @@ public class Length {
     }
 
     public Length add(Length length) {
-        return new Length(2, Unit.CM);
+        double magnitude = this.magnitude + length.convertTo(this.unit);
+        return new Length(magnitude, this.unit);
+    }
+
+    private double convertTo(Unit toUnit) {
+        return this.magnitude * (this.unit.getConversionFactor() / toUnit.getConversionFactor());
     }
 }

@@ -51,11 +51,21 @@ class LengthTest {
 
     @Test
     void should_Return_2_m_When_100_cm_and_1_m_IsAdded() {
-        Length hundredCentimeter = new Length(100, Unit.CM);
         Length oneMeter = new Length(1, Unit.M);
-        Length result = hundredCentimeter.add(oneMeter);
+        Length hundredCentimeter = new Length(100, Unit.CM);
+        Length result = oneMeter.add(hundredCentimeter);
 
         assertThat(2.0, is(equalTo(result.getMagnitude())));
+        assertThat(Unit.M, is(equalTo(result.getUnit())));
+    }
+
+    @Test
+    void should_Return_100200_cm_When_200_cm_and_1_km_IsAdded() {
+        Length twoHundredCentimeter = new Length(200, Unit.CM);
+        Length oneKilometer = new Length(1, Unit.KM);
+        Length result = twoHundredCentimeter.add(oneKilometer);
+
+        assertThat(100200.0, is(equalTo(result.getMagnitude())));
         assertThat(Unit.CM, is(equalTo(result.getUnit())));
     }
 }
