@@ -32,4 +32,20 @@ class LengthTest {
 
         assertThat(oneMeter, is(equalTo(hundredCentimeter)));
     }
+
+    @Test
+    void should_NotEquate_0Point1_Km_And_100_cm() {
+        Length zeroPointOneKm = new Length(0.1, Unit.KM);
+        Length hundredCentimeter = new Length(100, Unit.CM);
+
+        assertThat(zeroPointOneKm, is(not(equalTo(hundredCentimeter))));
+    }
+
+    @Test
+    void should_Equate_1_Km_And_100000_cm() {
+        Length oneKm = new Length(1, Unit.KM);
+        Length oneLakhCm = new Length(100000, Unit.CM);
+
+        assertThat(oneKm, is(equalTo(oneLakhCm)));
+    }
 }
