@@ -9,11 +9,7 @@ public enum Unit {
 
     private final double conversionFactor;
 
-    public double getConversionFactor() {
-        return conversionFactor;
-    }
-
     public double convertTo(double magnitude, Unit targetUnit) {
-        return magnitude * (conversionFactor / targetUnit.getConversionFactor());
+        return magnitude * (conversionFactor / targetUnit.conversionFactor);
     }
 }
