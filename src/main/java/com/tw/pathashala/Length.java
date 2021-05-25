@@ -11,6 +11,18 @@ public class Length {
         this.unit = unit;
     }
 
+    static Length centimeters(int magnitude) {
+        return new Length(magnitude, Unit.CM);
+    }
+
+    static Length meters(int magnitude) {
+        return new Length(magnitude, Unit.M);
+    }
+
+    static Length kilometers(double magnitude) {
+        return new Length(magnitude, Unit.KM);
+    }
+
     public Length add(Length length) {
         double sum = this.magnitude + length.convertTo(this.unit);
         return new Length(sum, this.unit);
