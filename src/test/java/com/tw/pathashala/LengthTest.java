@@ -3,9 +3,7 @@ package com.tw.pathashala;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.*;
 
 class LengthTest {
 
@@ -55,8 +53,7 @@ class LengthTest {
         Length hundredCentimeter = new Length(100, Unit.CM);
         Length result = oneMeter.add(hundredCentimeter);
 
-        assertThat(2.0, is(equalTo(result.getMagnitude())));
-        assertThat(Unit.M, is(equalTo(result.getUnit())));
+        assertThat(new Length(2, Unit.M), is(equalTo(result)));
     }
 
     @Test
@@ -65,7 +62,6 @@ class LengthTest {
         Length oneKilometer = new Length(1, Unit.KM);
         Length result = twoHundredCentimeter.add(oneKilometer);
 
-        assertThat(100200.0, is(equalTo(result.getMagnitude())));
-        assertThat(Unit.CM, is(equalTo(result.getUnit())));
+        assertThat(new Length(100200.0, Unit.CM), is(equalTo(result)));
     }
 }

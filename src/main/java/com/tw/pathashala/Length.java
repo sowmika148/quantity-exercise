@@ -1,7 +1,8 @@
 package com.tw.pathashala;
 
-public class Length {
+import java.util.Objects;
 
+public class Length {
     private final double magnitude;
     private final Unit unit;
 
@@ -10,12 +11,9 @@ public class Length {
         this.unit = unit;
     }
 
-    public double getMagnitude() {
-        return magnitude;
-    }
-
-    public Unit getUnit() {
-        return unit;
+    public Length add(Length length) {
+        double sum = this.magnitude + length.convertTo(this.unit);
+        return new Length(sum, this.unit);
     }
 
     @Override
@@ -23,17 +21,15 @@ public class Length {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Length that = (Length) o;
-        double thisValue = this.unit.getConversionFactor() * this.magnitude;
-        double thatValue = that.unit.getConversionFactor() * that.magnitude;
-        return Double.compare(thatValue, thisValue) == 0;
+        return Double.compare(that.convertTo(unit), convertTo(unit)) == 0;
     }
 
-    public Length add(Length length) {
-        double magnitude = this.magnitude + length.convertTo(this.unit);
-        return new Length(magnitude, this.unit);
+    @Override
+    public int hashCode() {
+        return Objects.hash(convertTo(unit));
     }
 
     private double convertTo(Unit toUnit) {
-        return this.magnitude * (this.unit.getConversionFactor() / toUnit.getConversionFactor());
+        return this.unit.convertTo(this.magnitude, toUnit);
     }
 }
